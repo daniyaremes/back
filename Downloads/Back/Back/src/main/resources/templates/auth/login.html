@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход | WatchStore Premium</title>
+    <link rel="stylesheet" href="/css/auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<div class="auth-card">
+    <div class="auth-header">
+        <h1 class="auth-title">С возвращением</h1>
+        <p class="auth-subtitle">Войдите в свой аккаунт WatchStore</p>
+    </div>
+
+    <div class="auth-body">
+        <div th:if="${param.error}" class="error-message">
+            <i class="fas fa-exclamation-circle"></i> Неверный email или пароль
+        </div>
+
+        <form th:action="@{/auth/login}" method="post">
+            <div class="input-group">
+                <label class="input-label">Email</label>
+                <div style="position: relative;">
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="email" name="username" class="input-field" placeholder="your@email.com" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Пароль</label>
+                <div style="position: relative;">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" name="password" class="input-field" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <button type="submit" class="auth-btn">
+                <i class="fas fa-sign-in-alt"></i> Войти
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            Ещё нет аккаунта? <a th:href="@{/auth/register}" class="auth-link">Создать аккаунт</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

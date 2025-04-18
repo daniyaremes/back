@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация | WatchStore</title>
+    <link rel="stylesheet" href="/css/auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="auth-container">
+    <div class="auth-header">
+        <h1 class="auth-title">Создать аккаунт</h1>
+        <p class="auth-subtitle">Присоединяйтесь к нашему сообществу</p>
+    </div>
+
+    <div th:if="${param.registered}" class="message success-message">
+        Регистрация успешна! Теперь вы можете войти.
+    </div>
+
+    <form th:action="@{/auth/register}" th:object="${user}" method="post">
+        <div class="form-group">
+            <label for="name">Имя</label>
+            <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Ваше имя" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" th:field="*{email}" class="form-control" placeholder="your@email.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Пароль</label>
+            <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Зарегистрироваться
+        </button>
+    </form>
+
+    <div class="auth-footer">
+        Уже есть аккаунт? <a th:href="@{/auth/login}" class="auth-link">Войти</a>
+    </div>
+</div>
+</body>
+</html>
